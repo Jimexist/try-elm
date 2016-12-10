@@ -1,0 +1,19 @@
+{
+  "name": "@madadata/try-elm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "counter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jimexist/try-elm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jimexist/try-elm/issues"
+  },
+  "homepage": "https://github.com/Jimexist/try-elm#readme"
+}
