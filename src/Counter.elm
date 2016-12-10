@@ -1,33 +1,44 @@
+port module Counter exposing (..)
+
 import Html exposing (..)
 import Svg exposing (svg, polygon, rect)
 import Svg.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 main =
-  Html.beginnerProgram
-  { model = Model 1000 0
-  , view = view
-  , update = update
-  }
-
--- Model
+  Html.program
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }
 
 type alias Model = {
     count : Int
-  , flag : Int
 }
+
+-- javascript interop
+port check : String -> Cmd msg
+port suggestions : (List String -> msg) -> Sub msg
 
 type Msg = Reset | Incr | Dec | Double
 
+init : (Model, Cmd Msg)
+init =
+  (Model 0, Cmd.none)
+
+subscriptions : Model -> Sub Msg
+subscriptions model = Sub.none
+
 -- Update
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    Reset -> { model | count = 0 }
-    Incr -> { model | count = model.count + 1 }
-    Dec -> { model | count = model.count - 1 }
-    Double -> { model | count = model.count * 2 }
+    Reset -> ( { model | count = 0 }, Cmd.none )
+    Incr -> ( { model | count = model.count + 1 }, Cmd.none )
+    Dec -> ( { model | count = model.count - 1 }, Cmd.none )
+    Double -> ( { model | count = model.count * 2 }, Cmd.none )
 
 view : Model -> Html Msg
 view model =
